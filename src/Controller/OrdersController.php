@@ -56,6 +56,10 @@ class OrdersController extends AppController
                 $order->total_amount *= 0.95;
             }
 
+            if ($order->long_product === true) {
+                $order->total_amount += 1995;
+            }
+
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
