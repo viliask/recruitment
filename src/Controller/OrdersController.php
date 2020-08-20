@@ -60,6 +60,13 @@ class OrdersController extends AppController
                 $order->total_amount += 1995;
             }
 
+            $postcode = $this->Orders->Codes->find('all', array(
+                'conditions' => array(
+                    ['id' => $order->codes_id],
+                ),
+                'limit' => 1,
+            ))->toArray();
+
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
