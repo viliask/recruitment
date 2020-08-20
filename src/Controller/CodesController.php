@@ -40,6 +40,29 @@ class CodesController extends AppController
     }
 
     /**
+     * Add method
+     *
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     */
+    public function add()
+    {
+        if ($this->request->is('post')) {
+            if (($handle = fopen(__DIR__."/postcodes.csv", "r")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                    $num = count($data);
+                    for ($c=0; $c < $num; $c++) {
+
+                        echo $data[$c] . "<br />\n";
+                    }
+                }
+                fclose($handle);
+            }
+
+            return $this->redirect(['action' => 'index']);
+        }
+    }
+
+    /**
      * Edit method
      *
      * @param string|null $id Code id.
