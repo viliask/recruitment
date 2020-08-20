@@ -5,9 +5,17 @@
  */
 ?>
 <div class="codes index content">
-    <?= $this->Html->link(__('New Code'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Codes') ?></h3>
-    <div class="table-responsive">
+    <?= $this->Html->link(__('New Codes from csv'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <aside class="column">
+        <div class="side-nav">
+            <h4 class="heading"><?= __('Actions') ?></h4>
+            <?= $this->Html->link(__('List Codes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?php echo $this->Html->link( "Orders", ['controller' => 'orders', 'action' => 'index']); ?>
+        </div>
+    </aside>
+
+    <div class="column-responsive">
         <table>
             <thead>
                 <tr>
