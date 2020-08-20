@@ -67,6 +67,8 @@ class OrdersController extends AppController
                 'limit' => 1,
             ))->toArray();
 
+            $zone = substr($postcode[0]->name, 0, 2);
+
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
