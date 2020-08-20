@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Order;
+
 /**
  * Orders Controller
  *
@@ -73,7 +75,7 @@ class OrdersController extends AppController
         $this->set(compact('order', 'codes'));
     }
 
-    private function updateByPostcode($order)
+    private function updateByPostcode(Order $order): void
     {
         $postcode = $this->Orders->Codes->find('all', array(
             'conditions' => array(
