@@ -54,15 +54,8 @@ class OrdersController extends AppController
         $order = $this->Orders->newEmptyEntity();
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
-            if ($order->total_amount > 12500) {
-                $order->total_amount *= 0.95;
-            }
 
-            if ($order->long_product === true) {
-                $order->total_amount += 1995;
-            }
-
-            $this->updateByPostcode($order);
+            $this->updateForm($order);
 
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
@@ -73,6 +66,19 @@ class OrdersController extends AppController
         }
         $codes = $this->Orders->Codes->find('list', ['limit' => 200]);
         $this->set(compact('order', 'codes'));
+    }
+
+    private function updateForm(Order $order): void
+    {
+        if ($order->total_amount > 12500) {
+            $order->total_amount *= 0.95;
+        }
+
+        if ($order->long_product === true) {
+            $order->total_amount += 1995;
+        }
+
+        $this->updateByPostcode($order);
     }
 
     private function updateByPostcode(Order $order): void
