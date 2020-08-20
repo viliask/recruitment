@@ -51,8 +51,14 @@ class CodesController extends AppController
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                     $num = count($data);
                     for ($c=0; $c < $num; $c++) {
+                        $code = $this->Codes->newEmptyEntity();
+                        $code->name = $data[$c];
 
-                        echo $data[$c] . "<br />\n";
+                        if ($this->Codes->save($code)) {
+                            $this->Flash->success(__('The code has been saved.'));
+                        } else {
+                            $this->Flash->error(__('The code could not be saved. Please, try again later.'));
+                        }
                     }
                 }
                 fclose($handle);
