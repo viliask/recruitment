@@ -52,6 +52,10 @@ class OrdersController extends AppController
         $order = $this->Orders->newEmptyEntity();
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
+            if ($order->total_amount > 12500) {
+                $order->total_amount *= 0.95;
+            }
+
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
