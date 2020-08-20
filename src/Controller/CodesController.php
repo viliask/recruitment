@@ -55,9 +55,9 @@ class CodesController extends AppController
                         $code->name = $data[$c];
 
                         if ($this->Codes->save($code)) {
-                            $this->Flash->success(__('The code has been saved.'));
+                            $this->Flash->success(__('The postcode has been saved.'));
                         } else {
-                            $this->Flash->error(__('The code could not be saved. Please, try again later.'));
+                            $this->Flash->error(__('The postcode could not be saved. Please, try again later.'));
                         }
                     }
                 }

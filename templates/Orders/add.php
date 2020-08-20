@@ -17,12 +17,12 @@
             <fieldset>
                 <legend><?= __('Add Order') ?></legend>
                 <?php
-                    echo $this->Form->control('total_amount');
-                    echo $this->Form->control('codes_id', ['options' => $codes]);
+                    echo $this->Form->control('total_amount', ['label' => 'Total order amount']);
+                    echo $this->Form->control('codes_id', ['options' => $codes, 'label' => 'Postcodes']);
                     echo $this->Form->control('long_product');
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Calculate')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
