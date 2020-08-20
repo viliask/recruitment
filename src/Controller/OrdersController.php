@@ -69,6 +69,14 @@ class OrdersController extends AppController
 
             $zone = substr($postcode[0]->name, 0, 2);
 
+            if ($zone === '23') {
+                $order->total_amount += 1111;
+            }
+
+            if ($zone === '35') {
+                $order->total_amount += 2222;
+            }
+
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
