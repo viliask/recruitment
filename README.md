@@ -27,5 +27,5 @@ Tools requirements:
 - go to localhost/orders/add
 
 <p align="center">
-    <a href="https://i.imgur.com/GAss4it"><img src="https://i.imgur.com/GAss4it.png" alt="image" border="0" /></a>
+    <a href="https://i.imgur.com/CWZY4Yw"><img src="https://i.imgur.com/CWZY4Yw.png" alt="image" border="0" /></a>
 </p>
