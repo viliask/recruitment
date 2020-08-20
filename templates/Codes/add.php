@@ -13,14 +13,11 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="codes form content">
-            <?= $this->Form->create($code) ?>
+            <?= $this->Form->create() ?>
             <fieldset>
-                <legend><?= __('Add Code') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                ?>
+                <legend><?= __('Add Codes') ?></legend>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Load data from CSV')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
