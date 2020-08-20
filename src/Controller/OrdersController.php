@@ -60,22 +60,7 @@ class OrdersController extends AppController
                 $order->total_amount += 1995;
             }
 
-            $postcode = $this->Orders->Codes->find('all', array(
-                'conditions' => array(
-                    ['id' => $order->codes_id],
-                ),
-                'limit' => 1,
-            ))->toArray();
-
-            $zone = substr($postcode[0]->name, 0, 2);
-
-            if ($zone === '23') {
-                $order->total_amount += 1111;
-            }
-
-            if ($zone === '35') {
-                $order->total_amount += 2222;
-            }
+            $this->updateByPostcode($order);
 
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
@@ -86,6 +71,26 @@ class OrdersController extends AppController
         }
         $codes = $this->Orders->Codes->find('list', ['limit' => 200]);
         $this->set(compact('order', 'codes'));
+    }
+
+    private function updateByPostcode($order)
+    {
+        $postcode = $this->Orders->Codes->find('all', array(
+            'conditions' => array(
+                ['id' => $order->codes_id],
+            ),
+            'limit' => 1,
+        ))->toArray();
+
+        $zone = substr($postcode[0]->name, 0, 2);
+
+        if ($zone === '23') {
+            $order->total_amount += 1111;
+        }
+
+        if ($zone === '35') {
+            $order->total_amount += 2222;
+        }
     }
 
     /**
