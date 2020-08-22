@@ -53,7 +53,9 @@ class OrdersController extends AppController
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
 
-            $this->updateForm($order);
+            if (is_int($order->postcode)){
+                $this->updateForm($order);
+            }
 
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
