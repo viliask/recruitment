@@ -67,9 +67,13 @@ class CodesController extends AppController
                         $newZones = array_diff($zonesCSV, $zonesArray);
 
                         $saveMany = [];
-                        foreach ($zonesCSV as $zone) {
+                        foreach ($newZones as $zone) {
                             array_push($saveMany, ['name' => $zone]);
                         }
+
+                        $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
+                        $entities = $codesRegistry->newEntities($saveMany);
+                        $result = $codesRegistry->saveMany($entities);
 
                         if ($this->Codes->save($code)) {
                             $this->Flash->success(__('The postcode has been saved.'));
