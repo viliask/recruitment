@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Orders Model
  *
- * @property \App\Model\Table\CodesTable&\Cake\ORM\Association\BelongsTo $Codes
- *
  * @method \App\Model\Entity\Order newEmptyEntity()
  * @method \App\Model\Entity\Order newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Order[] newEntities(array $data, array $options = [])
@@ -42,11 +40,6 @@ class OrdersTable extends Table
         $this->setTable('orders');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
-        $this->belongsTo('Codes', [
-            'foreignKey' => 'codes_id',
-            'joinType' => 'INNER',
-        ]);
     }
 
     /**
@@ -66,23 +59,19 @@ class OrdersTable extends Table
             ->notEmptyString('total_amount');
 
         $validator
+            ->scalar('postcode')
+            ->maxLength('postcode', 5)
+            ->requirePresence('postcode', 'create')
+            ->notEmptyString('postcode');
+
+        $validator
             ->boolean('long_product')
             ->allowEmptyString('long_product');
 
+        $validator
+            ->integer('shipping_price')
+            ->allowEmptyString('shipping_price');
+
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-        $rules->add($rules->existsIn(['codes_id'], 'Codes'), ['errorField' => 'codes_id']);
-
-        return $rules;
     }
 }

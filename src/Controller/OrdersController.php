@@ -20,9 +20,6 @@ class OrdersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Codes'],
-        ];
         $orders = $this->paginate($this->Orders);
 
         $this->set(compact('orders'));
@@ -38,7 +35,7 @@ class OrdersController extends AppController
     public function view($id = null)
     {
         $order = $this->Orders->get($id, [
-            'contain' => ['Codes'],
+            'contain' => [],
         ]);
 
         $this->set(compact('order'));
@@ -55,7 +52,7 @@ class OrdersController extends AppController
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
 
-            $this->updateForm($order);
+//            $this->updateForm($order);
 
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
@@ -64,8 +61,7 @@ class OrdersController extends AppController
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $codes = $this->Orders->Codes->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'codes'));
+        $this->set(compact('order'));
     }
 
     private function updateForm(Order $order): void
@@ -122,8 +118,7 @@ class OrdersController extends AppController
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $codes = $this->Orders->Codes->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'codes'));
+        $this->set(compact('order'));
     }
 
     /**

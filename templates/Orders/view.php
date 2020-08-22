@@ -19,8 +19,8 @@
             <h3><?= h($order->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Code') ?></th>
-                    <td><?= $order->has('code') ? $this->Html->link($order->code->name, ['controller' => 'Codes', 'action' => 'view', $order->code->id]) : '' ?></td>
+                    <th><?= __('Postcode') ?></th>
+                    <td><?= h($order->postcode) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
@@ -29,6 +29,10 @@
                 <tr>
                     <th><?= __('Total Amount') ?></th>
                     <td><?= $this->Number->format($order->total_amount) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Shipping Price') ?></th>
+                    <td><?= $this->Number->format($order->shipping_price) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Long Product') ?></th>

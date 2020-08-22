@@ -19,8 +19,9 @@ class OrdersFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'smallinteger', 'length' => 5, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'total_amount' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'codes_id' => ['type' => 'smallinteger', 'length' => 5, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'postcode' => ['type' => 'string', 'length' => 5, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'long_product' => ['type' => 'boolean', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'shipping_price' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -41,8 +42,9 @@ class OrdersFixture extends TestFixture
             [
                 'id' => 1,
                 'total_amount' => 1,
-                'codes_id' => 1,
+                'postcode' => 'Lor',
                 'long_product' => 1,
+                'shipping_price' => 1,
             ],
         ];
         parent::init();

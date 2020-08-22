@@ -22,9 +22,10 @@
             <fieldset>
                 <legend><?= __('Edit Order') ?></legend>
                 <?php
-                    echo $this->Form->control('total_amount');
-                    echo $this->Form->control('codes_id', ['options' => $codes]);
-                    echo $this->Form->control('long_product');
+                echo $this->Form->control('total_amount');
+                echo $this->Form->control('postcode');
+                echo $this->Form->control('long_product');
+                echo $this->Form->control('shipping_price');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -10,10 +10,9 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $total_amount
- * @property int $codes_id
+ * @property string $postcode
  * @property bool|null $long_product
- *
- * @property \App\Model\Entity\Code $code
+ * @property int|null $shipping_price
  */
 class Order extends Entity
 {
@@ -28,8 +27,8 @@ class Order extends Entity
      */
     protected $_accessible = [
         'total_amount' => true,
-        'codes_id' => true,
+        'postcode' => true,
         'long_product' => true,
-        'code' => true,
+        'shipping_price' => true,
     ];
 }
