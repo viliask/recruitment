@@ -55,6 +55,11 @@ class CodesController extends AppController
                     for ($c=0; $c < $num; $c++) {
                         array_push($zonesCSV, $data[$c]);
 
+                        $saveMany = [];
+                        foreach ($zonesCSV as $zone) {
+                            array_push($saveMany, ['name' => $zone]);
+                        }
+
                         if ($this->Codes->save($code)) {
                             $this->Flash->success(__('The postcode has been saved.'));
                         } else {
