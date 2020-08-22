@@ -47,7 +47,8 @@ class CodesController extends AppController
     public function add()
     {
         if ($this->request->is('post')) {
-            if (($handle = fopen(__DIR__."/postcodes.csv", "r")) !== FALSE) {
+            $file = $this->request->data['file']->getStream()->getMetadata('uri');
+            if (($handle = fopen($file, "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                     $num = count($data);
                     for ($c=0; $c < $num; $c++) {
