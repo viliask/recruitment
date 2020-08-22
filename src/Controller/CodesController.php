@@ -52,8 +52,7 @@ class CodesController extends AppController
             $file = $this->request->data['file']->getStream()->getMetadata('uri');
             $zonesCSV = [];
             if (($handle = fopen($file, "r")) !== FALSE) {
-                $zonesCSV = [];
-                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, "\n")) !== FALSE) {
                     $num = count($data);
                     for ($c=0; $c < $num; $c++) {
                         }
