@@ -17,6 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Codes') ?></legend>
             </fieldset>
+            <?= $this->Form->file('file') ?>
             <?= $this->Form->button(__('Load data from CSV')) ?>
             <?= $this->Form->end() ?>
         </div>
