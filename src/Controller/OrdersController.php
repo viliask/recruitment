@@ -53,7 +53,7 @@ class OrdersController extends AppController
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
 
-            if (is_int($order->postcode)){
+            if (strlen(strval($order->postcode)) === 5){
                 $this->updateForm($order);
             }
 
