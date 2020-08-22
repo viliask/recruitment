@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\Entity\Order;
+use Cake\ORM\TableRegistry;
 
 /**
  * Orders Controller
@@ -79,21 +80,16 @@ class OrdersController extends AppController
 
     private function updateByPostcode(Order $order): void
     {
-        $postcode = $this->Orders->Codes->find('all', array(
+        $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
+        $zone = $codesRegistry->find('all', array(
             'conditions' => array(
-                ['id' => $order->codes_id],
+                ['name' => substr($order->postcode, 0, 2)],
             ),
             'limit' => 1,
         ))->toArray();
 
-        $zone = substr($postcode[0]->name, 0, 2);
-
-        if ($zone === '23') {
-            $order->total_amount += 1111;
-        }
-
-        if ($zone === '35') {
-            $order->total_amount += 2222;
+        if ($zone) {
+            $order->shipping_price += (int)$zone[0]->name;
         }
     }
 
