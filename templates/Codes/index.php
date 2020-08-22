@@ -6,7 +6,7 @@
 ?>
 <div class="codes index content">
     <h3><?= __('Codes') ?></h3>
-    <?= $this->Html->link(__('New Codes from csv'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New zones from csv'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
