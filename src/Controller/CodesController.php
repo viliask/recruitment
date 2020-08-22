@@ -55,6 +55,8 @@ class CodesController extends AppController
                 while (($data = fgetcsv($handle, 1000, "\n")) !== FALSE) {
                     $num = count($data);
                     for ($c=0; $c < $num; $c++) {
+                        if (strlen($data[$c]) === 6) {
+                            array_push($zonesCSV, substr($data[$c], 0, 2));
                         }
                     }
                 }
