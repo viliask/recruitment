@@ -62,23 +62,8 @@ class CodesController extends AppController
                 }
                 fclose($handle);
             }
-            $zonesArray = [];
-            $zones = $this->Codes->find('all')->toArray();
 
-            foreach ($zones as $zone) {
-                array_push($zonesArray, $zone->name);
-            }
-
-            $newZones = array_diff($zonesCSV, $zonesArray);
-
-            $saveMany = [];
-            foreach ($newZones as $zone) {
-                array_push($saveMany, ['name' => $zone]);
-            }
-
-            $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
-            $entities = $codesRegistry->newEntities($saveMany);
-            $result = $codesRegistry->saveMany($entities);
+            $result = $this->saveManyZones($zonesCSV);
 
             if ($result) {
                 $this->Flash->success(__('Zones has been saved.'));
@@ -88,6 +73,26 @@ class CodesController extends AppController
 
             return $this->redirect(['action' => 'index']);
         }
+    }
+
+    private function saveManyZones(array $zonesCSV) {
+        $zonesArray = [];
+        $zones = $this->Codes->find('all')->toArray();
+
+        foreach ($zones as $zone) {
+            array_push($zonesArray, $zone->name);
+        }
+
+        $newZones = array_diff($zonesCSV, $zonesArray);
+
+        $saveMany = [];
+        foreach ($newZones as $zone) {
+            array_push($saveMany, ['name' => $zone]);
+        }
+
+        $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
+        $entities = $codesRegistry->newEntities($saveMany);
+        return $codesRegistry->saveMany($entities);
     }
 
     /**
