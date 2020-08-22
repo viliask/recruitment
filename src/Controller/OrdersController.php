@@ -67,15 +67,15 @@ class OrdersController extends AppController
 
     private function updateForm(Order $order): void
     {
-        if ($order->total_amount > 12500) {
-            $order->total_amount *= 0.95;
-        }
-
         if ($order->long_product === true) {
             $order->shipping_price += 1995;
         }
 
         $this->updateByPostcode($order);
+
+        if ($order->total_amount > 12500) {
+            $order->shipping_price *= 0.95;
+        }
     }
 
     private function updateByPostcode(Order $order): void
