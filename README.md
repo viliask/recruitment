@@ -23,9 +23,39 @@ Tools requirements:
 - CakePHP (use as MVC solution).
 
 ## Steps to setup
-- create db (I will send in email)
-- go to localhost/orders/add
+- create db from dump file recruitment.sql
+- go to localhost/orders
+- click into "Codes" link
+- click "NEW ZONES FROM CSV" button
+- attach csv file from base dir of this repository
+- click "LOAD DATA FROM CSV"
+- zones should be saved and listed
+- click "Orders" link
+- fill in form by following data: 
+    - Total order amount: 100000
+    - Postcode: 2300
+    - toggle checkbox
+- click "SAVE AND CALCULATE"
+- See result, shipping amount should give 1917,1(1995 + 23 - 100,9)
+
+### Screenshots
 
 <p align="center">
-    <a href="https://i.imgur.com/CWZY4Yw"><img src="https://i.imgur.com/CWZY4Yw.png" alt="image" border="0" /></a>
+    <a href="https://i.imgur.com/n7o2C8B.png"><img src="https://i.imgur.com/n7o2C8B.png" alt="image" border="0" /></a>
+</p>
+
+<p align="center">
+    <a href="https://i.imgur.com/1lI55Oh"><img src="https://i.imgur.com/1lI55Oh.png" alt="image" border="0" /></a>
+</p>
+
+<p align="center">
+    <a href="https://i.imgur.com/dKKcOO8"><img src="https://i.imgur.com/dKKcOO8.png" alt="image" border="0" /></a>
+</p>
+
+<p align="center">
+    <a href="https://i.imgur.com/16fGdSq"><img src="https://i.imgur.com/16fGdSq.png" alt="image" border="0" /></a>
+</p>
+
+<p align="center">
+    <a href="https://i.imgur.com/M8ZEZK6"><img src="https://i.imgur.com/M8ZEZK6.png" alt="image" border="0" /></a>
 </p>
