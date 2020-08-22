@@ -49,11 +49,11 @@ class CodesController extends AppController
         if ($this->request->is('post')) {
             $file = $this->request->data['file']->getStream()->getMetadata('uri');
             if (($handle = fopen($file, "r")) !== FALSE) {
+                $zonesCSV = [];
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                     $num = count($data);
                     for ($c=0; $c < $num; $c++) {
-                        $code = $this->Codes->newEmptyEntity();
-                        $code->name = $data[$c];
+                        array_push($zonesCSV, $data[$c]);
 
                         if ($this->Codes->save($code)) {
                             $this->Flash->success(__('The postcode has been saved.'));
