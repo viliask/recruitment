@@ -71,7 +71,7 @@ class OrdersController extends AppController
         }
 
         if ($order->long_product === true) {
-            $order->total_amount += 1995;
+            $order->shipping_price += 1995;
         }
 
         $this->updateByPostcode($order);
