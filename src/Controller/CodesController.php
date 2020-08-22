@@ -64,6 +64,7 @@ class CodesController extends AppController
                             array_push($zonesArray, $zone->name);
                         }
 
+                        $newZones = array_diff($zonesCSV, $zonesArray);
 
                         $saveMany = [];
                         foreach ($zonesCSV as $zone) {
