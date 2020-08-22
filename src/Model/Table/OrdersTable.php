@@ -60,6 +60,7 @@ class OrdersTable extends Table
 
         $validator
             ->numeric('postcode')
+            ->minLength('postcode', 5)
             ->maxLength('postcode', 5)
             ->requirePresence('postcode', 'create')
             ->notEmptyString('postcode');
@@ -69,7 +70,7 @@ class OrdersTable extends Table
             ->allowEmptyString('long_product');
 
         $validator
-            ->integer('shipping_price')
+            ->decimal('shipping_price')
             ->allowEmptyString('shipping_price');
 
         return $validator;
