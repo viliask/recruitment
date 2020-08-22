@@ -57,7 +57,12 @@ class CodesController extends AppController
                     for ($c=0; $c < $num; $c++) {
                         array_push($zonesCSV, $data[$c]);
 
+                        $zonesArray = [];
                         $zones = $this->Codes->find('all')->toArray();
+
+                        foreach ($zones as $zone) {
+                            array_push($zonesArray, $zone->name);
+                        }
 
 
                         $saveMany = [];
