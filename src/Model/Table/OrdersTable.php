@@ -59,7 +59,7 @@ class OrdersTable extends Table
             ->notEmptyString('total_amount');
 
         $validator
-            ->scalar('postcode')
+            ->numeric('postcode')
             ->maxLength('postcode', 5)
             ->requirePresence('postcode', 'create')
             ->notEmptyString('postcode');
