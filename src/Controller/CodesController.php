@@ -77,7 +77,9 @@ class CodesController extends AppController
 
     private function saveManyZones(array $zonesCSV) {
         $zonesArray = [];
+        $saveMany = [];
         $zones = $this->Codes->find('all')->toArray();
+        $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
 
         foreach ($zones as $zone) {
             array_push($zonesArray, $zone->name);
@@ -85,12 +87,10 @@ class CodesController extends AppController
 
         $newZones = array_diff($zonesCSV, $zonesArray);
 
-        $saveMany = [];
         foreach ($newZones as $zone) {
             array_push($saveMany, ['name' => $zone]);
         }
 
-        $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
         $entities = $codesRegistry->newEntities($saveMany);
         return $codesRegistry->saveMany($entities);
     }
