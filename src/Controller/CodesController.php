@@ -50,40 +50,34 @@ class CodesController extends AppController
     {
         if ($this->request->is('post')) {
             $file = $this->request->data['file']->getStream()->getMetadata('uri');
+            $zonesCSV = [];
             if (($handle = fopen($file, "r")) !== FALSE) {
                 $zonesCSV = [];
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                     $num = count($data);
                     for ($c=0; $c < $num; $c++) {
-                        array_push($zonesCSV, $data[$c]);
-
-                        $zonesArray = [];
-                        $zones = $this->Codes->find('all')->toArray();
-
-                        foreach ($zones as $zone) {
-                            array_push($zonesArray, $zone->name);
-                        }
-
-                        $newZones = array_diff($zonesCSV, $zonesArray);
-
-                        $saveMany = [];
-                        foreach ($newZones as $zone) {
-                            array_push($saveMany, ['name' => $zone]);
-                        }
-
-                        $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
-                        $entities = $codesRegistry->newEntities($saveMany);
-                        $result = $codesRegistry->saveMany($entities);
-
-                        if ($this->Codes->save($code)) {
-                            $this->Flash->success(__('The postcode has been saved.'));
-                        } else {
-                            $this->Flash->error(__('The postcode could not be saved. Please, try again later.'));
                         }
                     }
                 }
                 fclose($handle);
             }
+            $zonesArray = [];
+            $zones = $this->Codes->find('all')->toArray();
+
+            foreach ($zones as $zone) {
+                array_push($zonesArray, $zone->name);
+            }
+
+            $newZones = array_diff($zonesCSV, $zonesArray);
+
+            $saveMany = [];
+            foreach ($newZones as $zone) {
+                array_push($saveMany, ['name' => $zone]);
+            }
+
+            $codesRegistry = TableRegistry::getTableLocator()->get('Codes');
+            $entities = $codesRegistry->newEntities($saveMany);
+            $result = $codesRegistry->saveMany($entities);
 
             return $this->redirect(['action' => 'index']);
         }
