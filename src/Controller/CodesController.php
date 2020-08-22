@@ -80,6 +80,12 @@ class CodesController extends AppController
             $entities = $codesRegistry->newEntities($saveMany);
             $result = $codesRegistry->saveMany($entities);
 
+            if ($result) {
+                $this->Flash->success(__('Zones has been saved.'));
+            } else {
+                $this->Flash->error(__('Zones could not be saved. Can be duplicated with records from database, please try again later.'));
+            }
+
             return $this->redirect(['action' => 'index']);
         }
     }
