@@ -13,7 +13,7 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="codes form content">
-            <?= $this->Form->create() ?>
+            <?= $this->Form->create($code, ['enctype' => 'multipart/form-data']) ?>
             <fieldset>
                 <legend><?= __('Add Codes') ?></legend>
             </fieldset>
