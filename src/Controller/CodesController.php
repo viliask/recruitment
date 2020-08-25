@@ -49,7 +49,7 @@ class CodesController extends AppController
     public function add()
     {
         if ($this->request->is('post')) {
-            $file = $this->request->data['file']->getStream()->getMetadata('uri');
+            $file = $this->request->getData('file')->getStream()->getMetadata('uri');
             $zonesCSV = [];
             if (($handle = fopen($file, "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, "\n")) !== FALSE) {
